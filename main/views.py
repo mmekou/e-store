@@ -15,12 +15,6 @@ class ProductViewSet(ModelViewSet):
     filterset_class = ProductFilter
     search_fields = ["title", ]
 
-    # queryset = Product.objects.all()
-    # serializer_class = ProductDetailsSerializer
-    # filterset_class = ProductFilter
-    # search_fields = ['title']
-    # filter_backends = (filters.SearchFilter,)
-    # # filterset_fields = ['category', 'title', 'price']
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -49,8 +43,3 @@ class CommentViewSet(viewsets.ModelViewSet):
             permissions = [IsCommentAuthor, ]
         return [permission() for permission in permissions]
 
-# class CustomSearchFilter(filters.SearchFilter):
-#     def get_search_fields(self, view, request):
-#         if request.query_params.get('title_only'):
-#             return ['title']
-#         return super(CustomSearchFilter, self).get_search_fields(view, request)

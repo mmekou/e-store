@@ -23,15 +23,8 @@ class CommentSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-        representation['author'] = UserSerializer(instance.author_id).data
+        # representation['author'] = UserSerializer(instance.author_id).data
         return representation
-
-
-class CommentDetailSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Comment
-        fields = ('author_id', 'id', 'text', 'product')
 
 
 class ProductSerializer(serializers.ModelSerializer):
