@@ -19,11 +19,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 
-from main.views import ProductViewSet
+from cart.views import OrdersViewSet
+from main.views import ProductViewSet, CommentViewSet
 
 router = DefaultRouter()
 router.register('products', ProductViewSet)
-
+router.register('cart', OrdersViewSet)
+# router.register('comments', CommentViewSet)
+router.register(r'comments', CommentViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

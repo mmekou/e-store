@@ -1,5 +1,7 @@
 from django.db import models
 
+from account.models import User
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
@@ -30,7 +32,14 @@ class ProductImage(models.Model):
     product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='products', null=True, blank=True)
 
+class Comment(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    text = models.CharField(max_length=100)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
+    def __str__(self):
+        return self.author
+        # return f"{self.author}: {self.text}"
 
 
 
